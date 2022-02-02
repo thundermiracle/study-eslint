@@ -1,0 +1,11 @@
+{
+  "name": "study-eslint",
+  "license": "MIT",
+  "author": "ThunderMiracle",
+  "private": true,
+  "scripts": {
+    "lint": "pnpm run lint -r"
+  },
+  "devDependencies": {},
+  "prettier": "@web-configs/prettier"
+}

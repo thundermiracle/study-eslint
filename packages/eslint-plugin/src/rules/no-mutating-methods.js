@@ -10,25 +10,29 @@ const mutatingMethods = [
   'splice',
   'unshift',
   'unwatch',
-  'watch'
+  'watch',
 ];
 
 const mutatingObjectMethods = [
   'defineProperties',
   'defineProperty',
-  'setPrototypeOf'
+  'setPrototypeOf',
 ];
 
 function getNameIfPropertyIsIdentifier(property) {
-  return property.type === 'Identifier' &&
+  return (
+    property.type === 'Identifier' &&
     mutatingMethods.indexOf(property.name) !== -1 &&
-    property.name;
+    property.name
+  );
 }
 
 function getNameIfPropertyIsLiteral(property) {
-  return property.type === 'Literal' &&
+  return (
+    property.type === 'Literal' &&
     mutatingMethods.indexOf(property.value) !== -1 &&
-    property.value;
+    property.value
+  );
 }
 
 const create = function (context) {
@@ -41,7 +45,10 @@ const create = function (context) {
         return;
       }
 
-      if (node.callee.object.type === 'Identifier' && allowedObjects.indexOf(node.callee.object.name) !== -1) {
+      if (
+        node.callee.object.type === 'Identifier' &&
+        allowedObjects.indexOf(node.callee.object.name) !== -1
+      ) {
         return;
       }
 
@@ -49,35 +56,39 @@ const create = function (context) {
         if (mutatingObjectMethods.indexOf(node.callee.property.name) !== -1) {
           context.report({
             node,
-            message: `The use of method \`Object.${node.callee.property.name}\` is not allowed as it will mutate its arguments`
+            message: `The use of method \`Object.${node.callee.property.name}\` is not allowed as it will mutate its arguments`,
           });
         }
         return;
       }
 
-      const name = getNameIfPropertyIsIdentifier(node.callee.property) || getNameIfPropertyIsLiteral(node.callee.property);
+      const name =
+        getNameIfPropertyIsIdentifier(node.callee.property) ||
+        getNameIfPropertyIsLiteral(node.callee.property);
       if (name) {
         context.report({
           node,
-          message: `The use of method \`${name}\` is not allowed as it might be a mutating method`
+          message: `The use of method \`${name}\` is not allowed as it might be a mutating method`,
         });
         return;
       }
-    }
+    },
   };
 };
 
-const schema = [{
-  type: 'object',
-  properties: {
-    allowedObjects: {
-      type: 'array',
-      items: {
-        type: 'string'
-      }
-    }
-  }
-}];
+const schema = [
+  {
+    type: 'object',
+    properties: {
+      allowedObjects: {
+        type: 'array',
+        items: {
+          type: 'string',
+        },
+      },
+    },
+  },
+];
 
 module.exports = {
   create,
@@ -86,7 +97,7 @@ module.exports = {
     docs: {
       description: 'Forbid the use of mutating methods.',
       recommended: 'error',
-      url: 'https://github.com/jfmengels/eslint-plugin-fp/tree/master/docs/rules/no-mutating-methods.md'
-    }
-  }
+      url: 'https://github.com/jfmengels/eslint-plugin-fp/tree/master/docs/rules/no-mutating-methods.md',
+    },
+  },
 };

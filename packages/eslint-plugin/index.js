@@ -3,6 +3,6 @@ module.exports = {
     'no-mutating-methods': require('./src/rules/no-mutating-methods'),
   },
   configs: {
-    selectors: require("./src/configs/selectors"),
-  }
+    selectors: require('./src/configs/selectors'),
+  },
 };

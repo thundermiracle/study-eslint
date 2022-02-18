@@ -4,8 +4,12 @@
   "author": "ThunderMiracle",
   "private": true,
   "scripts": {
-    "lint": "pnpm run lint -r"
+    "lint": "pnpm run lint -r",
+    "prettier": "prettier --write '**/*.(js|jsx|ts|tsx)'"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@web-configs/prettier": "0.1.1",
+    "prettier": "2.5.1"
+  },
   "prettier": "@web-configs/prettier"
 }

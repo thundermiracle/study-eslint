@@ -9,5 +9,6 @@ module.exports = {
   rules: {
     '@web-configs/images-no-direct-imports': 'off',
     '@study-eslint/no-mutating-methods': 'error',
+    '@study-eslint/ast-learning': 'error',
   },
 };

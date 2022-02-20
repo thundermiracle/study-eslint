@@ -2,13 +2,12 @@
   "name": "@study-eslint/eslint-plugin",
   "version": "0.1.0",
   "main": "index.js",
-  "scripts": {
-  },
-  "devDependencies": {
-  },
+  "scripts": {},
+  "devDependencies": {},
   "peerDependencies": {
     "eslint": ">=8.3.0"
   },
   "dependencies": {
+    "@typescript-eslint/utils": "5.12.0"
   }
 }

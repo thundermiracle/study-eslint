@@ -3,8 +3,14 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+function shallow<T>(obj: T): T {
+  return obj;
+}
+
 function App() {
   const [count, setCount] = React.useState(0);
+
+  const wrapper = shallow(<App />);
 
   return (
     <div className="App">

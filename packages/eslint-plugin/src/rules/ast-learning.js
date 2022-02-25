@@ -1,19 +1,28 @@
+// @type-check
 const { ESLintUtils } = require('@typescript-eslint/utils');
 
 // base of: https://dev.to/alexgomesdev/writing-custom-typescript-eslint-rules-how-i-learned-to-love-the-ast-15pn
 const rule = ESLintUtils.RuleCreator.withoutDocs({
-  defaultOptions: [],
+  // defaultOptions: [],
   meta: {
     type: 'problem',
-    fixable: 'code',
+    fixable: 'whitespace',
+    messages: {
+      no_shallow_without_generic: 'Use shallow with generic type',
+    },
+    schema: [],
   },
   create: function (context) {
     return {
       CallExpression: function (node) {
-        if (node.callee.name === 'shallow' && !node.typeParameters) {
+        if (
+          node.callee.type === 'Identifier' &&
+          node.callee.name === 'shallow' &&
+          !node.typeParameters
+        ) {
           context.report({
             node,
-            message: 'Use shallow with generic type',
+            messageId: 'no_shallow_without_generic',
             fix: function (fixer) {
               if (node.arguments.length === 1) {
                 const argumentFirstNode = node.arguments[0];

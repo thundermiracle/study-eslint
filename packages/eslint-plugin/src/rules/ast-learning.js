@@ -3,7 +3,7 @@ const { ESLintUtils } = require('@typescript-eslint/utils');
 
 // base of: https://dev.to/alexgomesdev/writing-custom-typescript-eslint-rules-how-i-learned-to-love-the-ast-15pn
 const rule = ESLintUtils.RuleCreator.withoutDocs({
-  // defaultOptions: [],
+  defaultOptions: [],
   meta: {
     type: 'problem',
     fixable: 'whitespace',

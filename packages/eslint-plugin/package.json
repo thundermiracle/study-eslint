@@ -2,8 +2,17 @@
   "name": "@study-eslint/eslint-plugin",
   "version": "0.1.0",
   "main": "index.js",
-  "scripts": {},
-  "devDependencies": {},
+  "scripts": {
+    "test:v": "vitest --global",
+    "test:j": "jest --watch"
+  },
+  "devDependencies": {
+    "@swc/core": "^1.2.148",
+    "@swc/jest": "^0.2.20",
+    "@typescript-eslint/parser": "^5.13.0",
+    "jest": "^27.5.1",
+    "vitest": "^0.5.9"
+  },
   "peerDependencies": {
     "eslint": ">=8.3.0"
   },

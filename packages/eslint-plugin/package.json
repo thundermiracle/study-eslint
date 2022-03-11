@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "main": "index.js",
   "scripts": {
-    "test:v": "vitest --global",
+    "test:v": "vitest --global --reporter verbose",
     "test:j": "jest --watch"
   },
   "devDependencies": {
